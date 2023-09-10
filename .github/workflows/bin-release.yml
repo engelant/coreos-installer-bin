@@ -18,16 +18,16 @@ jobs:
       - name: Install coreos-installer with Cargo
         run: cargo install --target x86_64-unknown-linux-gnu --root ./build/x86_64-unknown-linux-gnu coreos-installer
       - name: Strip unneeded
-        run: objcopy --strip-unneeded /build/x86_64-unknown-linux-gnu/bin/coreos-installer
+        run: objcopy --strip-unneeded ./build/x86_64-unknown-linux-gnu/bin/coreos-installer
       - name: Compress xz
-        run: xz -k /build/x86_64-unknown-linux-gnu/bin/coreos-installer
+        run: xz -k ./build/x86_64-unknown-linux-gnu/bin/coreos-installer
       - name: Compress bz2
-        run: bzip2 -k /build/x86_64-unknown-linux-gnu/bin/coreos-installer
+        run: bzip2 -k ./build/x86_64-unknown-linux-gnu/bin/coreos-installer
       - name: Compress gz
-        run: gzip -k /build/x86_64-unknown-linux-gnu/bin/coreos-installer
+        run: gzip -k ./build/x86_64-unknown-linux-gnu/bin/coreos-installer
       - uses: ncipollo/release-action@v1
         with:
-          artifacts: "/build/x86_64-unknown-linux-gnu/bin/*"
+          artifacts: "./build/x86_64-unknown-linux-gnu/bin/*"
           allowUpdates: true
           makeLatest: true
           tag: "latest"
